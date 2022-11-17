@@ -46,6 +46,13 @@ class ProfileController extends Controller
         return back()->withStatus(__('Profile successfully updated.'));
     }
 
+    public function delete_user(Request $request){
+        $id = $request->id;
+        $delete = User::where('id',$id)->delete();
+
+        return back()->withStatus(__('Profile successfully updated.'));
+    }
+
     /**
      * Change the password
      *

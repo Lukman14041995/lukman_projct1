@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');
 Route::get('user', function () { return view('user'); })->middleware(['checkRole:user,admin']);Auth::routes();
 Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update'])->middleware('checkRole:admin');
+Route::post('profile', ['as' => 'profile.delete', 'uses' => 'ProfileController@delete_user'])->middleware('checkRole:admin');
 Route::resource('user', 'UserController', ['except' => ['show']])->middleware(['checkRole:user,admin']);Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 

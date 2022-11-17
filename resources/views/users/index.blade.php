@@ -35,8 +35,36 @@
                 <td>{{$users->role}}</td>
                 <td>
                     @if(Auth::user()->role == "admin")
-                     <a href="" class="x" style="color: green;" data-toggle="modal" data-target="#exampleModal23<?php echo $users->id?>"><i class="fas fa-edit">Edit</i></a>
+                     <a href="" class="bottom" style="color: green;" data-toggle="modal" data-target="#exampleModal23<?php echo $users->id?>"><i class="fas fa-edit">Edit</i></a>
+                     <a href="" class="bottom" style="color: rgb(111, 7, 21);" data-toggle="modal" data-target="#exampleModal24<?php echo $users->id?>"><i class="fas fa-edit">delete</i></a>
+
                      @endif</td>
+                     <div class="modal fade" id="exampleModal24<?php echo $users->id?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                      <div class="modal-content" style="background-color: rgba(89, 28, 128, 0.719);">
+                          <div class="modal-header">
+                          <h5 class="modal-title text-white" style="width : 100%; font-family: hi" id="exampleModalLabel">Yakin ingin Delete Ini?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                          </div>
+                          <div class="modal-body">
+                              <form action="{{ route('profile.delete') }}" method="post" autocomplete="off">
+                              @csrf
+                                  <input type="hidden" class="form-control" name="id" value="{{$users->id}}" placeholder="Qty" id="">
+                              </div>
+                              <div class="modal-body">
+                                  <input type="text" class="form-control" name="name" value="{{$users->name}}" placeholder="name" id="">
+
+                              </div>
+                              
+                              <div class="modal-footer">
+                                  <button type="submit" style="width : 100%; font-family: hi" class="btn btn-danger">Yes</button>
+                              </form>
+                            </div>
+                      </div>
+                      </div>
+                  </div>
               </tr>
               <div class="modal fade" id="exampleModal23<?php echo $users->id?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -93,6 +121,8 @@
                                 </div>
                                 </div>
                             </div>
+
+                            
               @endforeach
             </tbody>
           </table>
