@@ -24,7 +24,6 @@ Route::get('admin', function () { return view('admin'); })->middleware('checkRol
 Route::get('user', function () { return view('user'); })->middleware(['checkRole:user,admin']);Auth::routes();
 Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update'])->middleware('checkRole:admin');
 Route::resource('user', 'UserController', ['except' => ['show']])->middleware(['checkRole:user,admin']);Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -43,4 +42,5 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
+
 
